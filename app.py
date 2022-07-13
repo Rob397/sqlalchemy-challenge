@@ -1,13 +1,8 @@
 from flask import Flask, jsonify
-
+# example dictionary to jsonify
 justice_league_dict = [
     {"superhero": "Aquaman", "real_name": "Arthur Curry"},
     {"superhero": "Batman", "real_name": "Bruce Wayne"},
-    {"superhero": "Cyborg", "real_name": "Victor Stone"},
-    {"superhero": "Flash", "real_name": "Barry Allen"},
-    {"superhero": "Green Lantern", "real_name": "Hal Jordan"},
-    {"superhero": "Superman", "real_name": "Clark Kent/Kal-El"},
-    {"superhero": "Wonder Woman", "real_name": "Princess Diana"}
 ]
 
 #################################################
