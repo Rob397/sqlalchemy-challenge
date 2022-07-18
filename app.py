@@ -84,7 +84,7 @@ def precipitation():
 
     return jsonify(all_results)
 
-#Return a JSON list of stations from the dataset. session.query(station.name).group_by(station.name).order_by(station.name).all()
+#Return a JSON list of stations from the dataset. 
 # -------------------------JSON list worked with /api/v1.0/stations-----------------------
 @app.route("/api/v1.0/stations")
 def stations():  
@@ -124,9 +124,20 @@ end = dt.date(2016, 12, 1)
 def start_end():
     """Return a JSON list of temperature observations (TOBS) for the given start and end dates."""
     session =Session(engine)
-    results = session.query(measurement.date, measurement.prcp).filter(measurement.date >= start).filter(measurement.date < end).all()
-
-
+    results = session.query(measurement.date, func.min(measurement.tobs), func.avg(measurement.tobs), func.max(measurement.tobs))\
+    .filter(measurement.date >= start).filter(measurement.date < end).all()
+    session.close()
+    temp = list(np.ravel(results))
+    # tobs_obs =[]
+    # for date, min, average, max in results:
+    #     obs_dict ={}
+    #     obs_dict["date"]
+    #     obs_dict["min temp"] = min
+    #     obs_dict["average temp"] =average
+    #     obs_dict["Max temp"] = max
+    #     tobs_obs.append(obs_dict)
+    return jsonify(temp = temp)
+ 
 
 
 
